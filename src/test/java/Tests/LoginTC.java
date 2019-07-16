@@ -59,9 +59,9 @@ public class LoginTC {
 
         if(dr.getTitle().equals("GTPL Bank Manager HomePage"))
         {
-            Result2Excels.saveResult2ExcelFile("ResultDemo","Result","TC01","Verify user can login with valid username and password","Passed");
+            Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result","TC01","Verify user can login with valid username and password");
         }else
-            Result2Excels.saveResult2ExcelFile("ResultDemo","Result","TC01","Verify user can login with valid username and password","Failed");
+            Result2Excels.saveResult2ExcelFileFailed("ResultDemo","Result","TC01","Verify user can login with valid username and password");
         //Check Home page display after login successful
         Assert.assertEquals(" GTPL Bank Manager HomePage ".trim(),dr.getTitle());
         Assert.assertEquals(true,dr.findElement(By.xpath(".//a[@href='addcustomerpage.php']")).isDisplayed());
