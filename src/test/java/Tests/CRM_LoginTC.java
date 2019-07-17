@@ -100,8 +100,6 @@ public class CRM_LoginTC {
             Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
                     "TC_REQ_REQ_UPM_Login_03_01","Verify that user cannot login when leaving Email and Password fields are blank");
 
-
-
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -112,7 +110,6 @@ public class CRM_LoginTC {
             assert false;
 
         }
-
 
         //Assert.assertTrue(driver.findElement(By.xpath(CRM_Login_Page.TxtUsernameRedMessage)).getAttribute("innerHTML").equalsIgnoreCase("Please enter your email")
         // &&driver.findElement(By.xpath(CRM_Login_Page.TxtPasswordRedMessage)).getAttribute("innerHTML").equalsIgnoreCase("Please enter your password"));
@@ -134,8 +131,6 @@ public class CRM_LoginTC {
             Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
                     "TC_REQ_REQ_UPM_Login_03_02","Verify that user cannot login when leaving Password field blank");
 
-
-
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -146,7 +141,6 @@ public class CRM_LoginTC {
             assert false;
 
         }
-
 
 //        Assert.assertTrue(driver.findElement(By.xpath(CRM_Login_Page.TxtPasswordRedMessage))
 //                .getAttribute("innerHTML").equalsIgnoreCase("Please enter your password"));
@@ -168,8 +162,6 @@ public class CRM_LoginTC {
             Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
                     "TC_REQ_REQ_UPM_Login_03_03","Verify that user cannot login when leaving Email field blank");
 
-
-
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -180,8 +172,6 @@ public class CRM_LoginTC {
             assert false;
 
         }
-
-
 //        Assert.assertTrue(driver.findElement(By.xpath(CRM_Login_Page.TxtUsernameRedMessage))
 //                .getAttribute("innerHTML").equalsIgnoreCase("Please enter your email"));
 
@@ -198,13 +188,10 @@ public class CRM_LoginTC {
         CRM_Login_Actions.enterUsernameAndPassword(driver,user1.getUsername(),user1.getPassword()+"123");
         CRM_Login_Actions.clickLoginButton(driver);
 
-
         try {
             Assert.assertEquals(driver.findElement(By.xpath("//form[@id='campaigntypeform']//p")).getAttribute("innerHTML"),"The email or password is incorrect!");
             Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
                     "TC_REQ_REQ_UPM_Login_03_04","Verify that user cannot login with a correct email and incorrect password");
-
-
 
         }catch (Exception e)
         {
@@ -216,7 +203,6 @@ public class CRM_LoginTC {
             assert false;
 
         }
-
 
         //Assert.assertEquals(driver.findElement(By.xpath("//form[@id='campaigntypeform']//p")).getText(),"The email or password is incorrect!");
         waitMoment();
@@ -237,8 +223,6 @@ public class CRM_LoginTC {
             Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
                     "TC_REQ_REQ_UPM_Login_03_05","Verify that user cannot login with an incorrect email");
 
-
-
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -249,7 +233,6 @@ public class CRM_LoginTC {
             assert false;
 
         }
-
 
         //Assert.assertEquals(driver.findElement(By.xpath("//form[@id='campaigntypeform']//p")).getText(),"The email or password is incorrect!");
         waitMoment();
@@ -269,8 +252,6 @@ public class CRM_LoginTC {
             Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
                     "TC_REQ_REQ_UPM_Login_03_06","Verify that user cannot login with an invalid email");
 
-
-
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -279,8 +260,6 @@ public class CRM_LoginTC {
             waitMoment();
             driver.quit();
             assert false;
-
-
 
         }
 
@@ -304,8 +283,6 @@ public class CRM_LoginTC {
             Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
                     "TC_REQ_REQ_UPM_Login_03_07","Verify that user cannot login with an email of user was blocked");
 
-
-
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -315,9 +292,7 @@ public class CRM_LoginTC {
             driver.quit();
             assert false;
 
-
         }
-
 
         //Assert.assertEquals(driver.findElement(By.xpath("//form[@id='campaigntypeform']//p")).getText(),"The email or password is incorrect!");
         waitMoment();
@@ -337,8 +312,6 @@ public class CRM_LoginTC {
             Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
                     "TC_REQ_REQ_UPM_Login_03_08","Verify that user cannot login with a email of user was deleted");
 
-
-
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -348,9 +321,7 @@ public class CRM_LoginTC {
             driver.quit();
             assert false;
 
-
         }
-
 
         //Assert.assertEquals(driver.findElement(By.xpath("//form[@id='campaigntypeform']//p")).getText(),"The email or password is incorrect!");
         waitMoment();
