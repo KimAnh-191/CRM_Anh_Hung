@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class CRM_CreateCampaingTypeTC {
+public class CRM_CreateCampaignTypeTC {
     Properties properties;
     String propertyFilePath= ".\\src\\test\\Resources\\Configs\\Config.properties";
 
@@ -64,12 +64,13 @@ public class CRM_CreateCampaingTypeTC {
     public  void createCampaignTypeTC1() throws IOException {
 
         CRM_CM_AddCampaignType_Actions.clickCreateCampaingTyoe(driver);
+        Assert.assertEquals(driver.getCurrentUrl(),CRM_CM_Page.urlCreateCampaingType);
         CRM_CM_AddCampaignType_Actions.enterCampaignTypeName(driver,crmCampaignType.getCampaingTypeName());
         CRM_CM_AddCampaignType_Actions.clickBtnSave(driver);
 
 
         try {
-            Assert.assertEquals(driver.getCurrentUrl(), CRM_CM_Page.urlShowAllCampaigns);
+            Assert.assertEquals(driver.getCurrentUrl(), CRM_CM_Page.urlShowAllCampaignTypes);
             Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
                     "TC_REQ_CM_AddType_01_01","Verify that user can add a new campaign type");
 
@@ -86,6 +87,8 @@ public class CRM_CreateCampaingTypeTC {
 
         }
 
+
+
         waitMoment();
         driver.quit();
     }
@@ -95,12 +98,13 @@ public class CRM_CreateCampaingTypeTC {
     public  void createCampaignTypeTC2() throws IOException {
 
         CRM_CM_AddCampaignType_Actions.clickCreateCampaingTyoe(driver);
+        Assert.assertEquals(driver.getCurrentUrl(),CRM_CM_Page.urlCreateCampaingType);
         CRM_CM_AddCampaignType_Actions.clearCampaignTypeName(driver);
         CRM_CM_AddCampaignType_Actions.clickBtnSave(driver);
 
 
         try {
-            Assert.assertEquals(driver.findElement(By.xpath(CRM_CM_Page.txtCTNameRedMessage)).getText(),"Please enter campaign type name");
+            Assert.assertEquals(driver.findElement(By.xpath(CRM_CM_Page.txtCampaignTypeNameRedMessage)).getText(),"Please enter campaign type name");
             Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
                     "TC_REQ_CM_AddType_01_02","Verify that user cannot create a new campaign type when leaving Campaign Name Type field blank");
 
