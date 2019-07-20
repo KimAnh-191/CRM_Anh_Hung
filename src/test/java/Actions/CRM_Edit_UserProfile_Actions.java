@@ -9,7 +9,7 @@ public class CRM_Edit_UserProfile_Actions {
     {
         driver.findElement(By.xpath(CRM_Edit_UserProfile_Pages.profileLink)).click();
     }
-    public static void clearName_Company_Phone(WebDriver driver, String name, String company, String phone)
+    public static void clearName_Company_Phone(WebDriver driver)
     {
         driver.findElement(By.xpath(CRM_Edit_UserProfile_Pages.txtName)).clear();
         driver.findElement(By.xpath(CRM_Edit_UserProfile_Pages.txtCompany)).clear();
