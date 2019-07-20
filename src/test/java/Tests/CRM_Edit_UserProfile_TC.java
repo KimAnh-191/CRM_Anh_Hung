@@ -4,12 +4,11 @@ import Actions.CRM_Edit_UserProfile_Actions;
 import Actions.CRM_Login_Actions;
 import Commons.LoadConfigFile;
 import Commons.Result2Excels;
-import Objects.Users;
+import Objects.CRM_Users;
 import Pages.CRM_Edit_UserProfile_Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -25,7 +24,7 @@ public class CRM_Edit_UserProfile_TC {
 
     WebDriver driver;
 
-    Users user1 = new Users();
+    CRM_Users user1 = new CRM_Users();
     int TimeOut = 2;
 
     @BeforeMethod
@@ -49,7 +48,7 @@ public class CRM_Edit_UserProfile_TC {
         driver.get(properties.getProperty("SiteURL"));
         System.out.println(driver.getTitle());
         Thread.sleep(1000);
-        CRM_Login_Actions.enterUsernameAndPassword(driver, user1.getUsername(), user1.getPassword());
+        CRM_Login_Actions.enterUsernameAndPassword(driver,user1.getUsername(),user1.getPassword());
         CRM_Login_Actions.clickLoginButton(driver);
         CRM_Edit_UserProfile_Actions.clickProfilelink(driver);
     }

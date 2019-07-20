@@ -7,7 +7,7 @@ import Commons.LoadConfigFile;
 
 import Commons.Result2Excels;
 import Objects.CRM_CampaignType;
-import Objects.Users;
+import Objects.CRM_Users;
 
 import Pages.CRM_CM_Page;
 import org.openqa.selenium.By;
@@ -29,7 +29,7 @@ public class CRM_CreateCampaignTypeTC {
 
     WebDriver driver;
 
-    Users user1 = new Users();
+    CRM_Users user1 = new CRM_Users();
     CRM_CampaignType crmCampaignType = new CRM_CampaignType();
 
     int TimeOut = 2;
@@ -68,29 +68,25 @@ public class CRM_CreateCampaignTypeTC {
         CRM_CM_AddCampaignType_Actions.enterCampaignTypeName(driver,crmCampaignType.getCampaingTypeName());
         CRM_CM_AddCampaignType_Actions.clickBtnSave(driver);
 
-
-        try {
-            Assert.assertEquals(driver.getCurrentUrl(), CRM_CM_Page.urlShowAllCampaignTypes);
-            Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
-                    "TC_REQ_CM_AddType_01_01","Verify that user can add a new campaign type");
-
-
-        }catch (Exception e)
+        if(driver.getCurrentUrl().equalsIgnoreCase(CRM_CM_Page.urlShowAllCampaignTypes))
         {
-            e.printStackTrace();
-            Result2Excels.saveResult2ExcelFileFailed("ResultDemo","Result",
-                    "TC_REQ_CM_AddType_01_01","Verify that user can add a new campaign type");
+            Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
+                    "TC_REQ_CM_AddType_01_02","Verify that user cannot create a new campaign type when leaving Campaign Name Type field blank");
 
-            waitMoment();
-            driver.quit();
-            assert false;
+        }
+        else
+        {
+            Result2Excels.saveResult2ExcelFileFailed("ResultDemo","Result",
+                    "TC_REQ_CM_AddType_01_02","Verify that user cannot create a new campaign type when leaving Campaign Name Type field blank");
+
 
         }
 
-
+        Assert.assertEquals(driver.getCurrentUrl(), CRM_CM_Page.urlShowAllCampaignTypes);
 
         waitMoment();
         driver.quit();
+
     }
 
     //Verify that the red message "Please enter campaign type name" displays above Campagin Name Type field when leaving this field blank
@@ -102,24 +98,20 @@ public class CRM_CreateCampaignTypeTC {
         CRM_CM_AddCampaignType_Actions.clearCampaignTypeName(driver);
         CRM_CM_AddCampaignType_Actions.clickBtnSave(driver);
 
-
-        try {
-            Assert.assertEquals(driver.findElement(By.xpath(CRM_CM_Page.txtCampaignTypeNameRedMessage)).getText(),"Please enter campaign type name");
+        if(driver.findElement(By.xpath(CRM_CM_Page.txtCampaignTypeNameRedMessage)).getText().equalsIgnoreCase("Please enter campaign type name"))
+        {
             Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
                     "TC_REQ_CM_AddType_01_02","Verify that user cannot create a new campaign type when leaving Campaign Name Type field blank");
 
-
-        }catch (Exception e)
+        }
+        else
         {
-            e.printStackTrace();
             Result2Excels.saveResult2ExcelFileFailed("ResultDemo","Result",
                     "TC_REQ_CM_AddType_01_02","Verify that user cannot create a new campaign type when leaving Campaign Name Type field blank");
 
-            waitMoment();
-            driver.quit();
-            assert false;
-
         }
+
+        Assert.assertEquals(driver.findElement(By.xpath(CRM_CM_Page.txtCampaignTypeNameRedMessage)).getText(),"Please enter campaign type name","The message displays incorrect");
 
         waitMoment();
         driver.quit();

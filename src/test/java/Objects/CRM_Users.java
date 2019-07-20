@@ -1,6 +1,6 @@
 package Objects;
 
-public class Users {
+public class CRM_Users {
     private String Username;
     private String Password;
     private String Name;

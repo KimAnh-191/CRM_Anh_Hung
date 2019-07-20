@@ -6,11 +6,10 @@ import Actions.CRM_Login_Actions;
 import Commons.LoadConfigFile;
 import Commons.Result2Excels;
 import Objects.CRM_Campaign;
-import Objects.Users;
+import Objects.CRM_Users;
 import Pages.CRM_CM_Page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -28,7 +27,7 @@ public class CRM_CreateCampaign {
 
     WebDriver driver;
 
-    Users user1 = new Users();
+    CRM_Users user1 = new CRM_Users();
     CRM_Campaign crmCampaign = new CRM_Campaign();
 
     int TimeOut = 2;
@@ -105,38 +104,38 @@ public class CRM_CreateCampaign {
     }
 
 
-    //Verify that user can add a new campaign
-    @Test(description = "Verify that user can add a new campaign successful")
-    public  void createCampaignTC003() throws IOException {
-
-        CRM_CM_AddCampaign_Actions.clickCreateCampaign(driver);
-        Assert.assertEquals(driver.getCurrentUrl(), CRM_CM_Page.urlCreateCampaing);
-
-        CRM_CM_AddCampaign_Actions.createCampaing(driver,crmCampaign.getCampaignName(),crmCampaign.getChooseCampaignTypeName(),
-                crmCampaign.getCampaignStatus(),crmCampaign.getCampaignStartDate(),crmCampaign.getCampaignExpectedRevenue(),
-                crmCampaign.getCampaignEndDate(),crmCampaign.getCampaignBudgetedCost(),crmCampaign.getCampaignActualCost(),
-                crmCampaign.getCampaignDescription());
-        CRM_CM_AddCampaign_Actions.clickCreateButton(driver);
-
-        if (driver.getCurrentUrl().equalsIgnoreCase(CRM_CM_Page.urlShowAllCampaigns))
-        {
-            Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
-                    "TC_REQ_CM_Add_02_01","Verify that user can add a new campaign successful");
-
-        }
-        else
-        {
-            Result2Excels.saveResult2ExcelFileFailed("ResultDemo","Result",
-                    "TC_REQ_CM_Add_02_01","Verify that user can add a new campaign successful");
-
-        }
-
-        Assert.assertEquals(driver.getCurrentUrl(), CRM_CM_Page.urlShowAllCampaigns);
-
-        waitMoment();
-        driver.quit();
-
-    }
+//    //Verify that user can add a new campaign
+//    @Test(description = "Verify that user can add a new campaign successful")
+//    public  void createCampaignTC003() throws IOException {
+//
+//        CRM_CM_AddCampaign_Actions.clickCreateCampaign(driver);
+//        Assert.assertEquals(driver.getCurrentUrl(), CRM_CM_Page.urlCreateCampaing);
+//
+//        CRM_CM_AddCampaign_Actions.createCampaing(driver,crmCampaign.getCampaignName(),crmCampaign.getChooseCampaignTypeName(),
+//                crmCampaign.getCampaignStatus(),crmCampaign.getCampaignStartDate(),crmCampaign.getCampaignExpectedRevenue(),
+//                crmCampaign.getCampaignEndDate(),crmCampaign.getCampaignBudgetedCost(),crmCampaign.getCampaignActualCost(),
+//                crmCampaign.getCampaignDescription());
+//        CRM_CM_AddCampaign_Actions.clickCreateButton(driver);
+//
+//        if (driver.getCurrentUrl().equalsIgnoreCase(CRM_CM_Page.urlShowAllCampaigns))
+//        {
+//            Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
+//                    "TC_REQ_CM_Add_02_01","Verify that user can add a new campaign successful");
+//
+//        }
+//        else
+//        {
+//            Result2Excels.saveResult2ExcelFileFailed("ResultDemo","Result",
+//                    "TC_REQ_CM_Add_02_01","Verify that user can add a new campaign successful");
+//
+//        }
+//
+//        Assert.assertEquals(driver.getCurrentUrl(), CRM_CM_Page.urlShowAllCampaigns);
+//
+//        waitMoment();
+//        driver.quit();
+//
+//    }
 
     //Verify that the red message "Please enter campaign name" displays above Campaign Name field when leaving this field blank
     @Test(description = "Verify that user cannot create a new Campaign when leaving Campaign Name field blank")
@@ -356,7 +355,7 @@ public class CRM_CreateCampaign {
         CRM_CM_AddCampaign_Actions.clickCreateButton(driver);
 
         if (driver.findElement(By.xpath(CRM_CM_Page.txtDescriptionRedMessage)).getText()
-                .equalsIgnoreCase("Enter YYYY-MM-DD please"))
+                .equalsIgnoreCase("Please enter description"))
         {
             Result2Excels.saveResult2ExcelFilePassed("ResultDemo","Result",
                     "TC_REQ_CM_Add_03_07","Verify that user cannot create a new Campaign when leaving Description field blank");
@@ -437,9 +436,11 @@ public class CRM_CreateCampaign {
             Result2Excels.saveResult2ExcelFileFailed("ResultDemo","Result",
                     "TC_REQ_CM_Add_03_09","Verify that user cannot create a new Campaign when entering invalid value into Expected Revenue field");
 
+
         }
 
         Assert.assertEquals(driver.findElement(By.xpath(CRM_CM_Page.txtExpectedRevenueRedMessage)).getText(), "Expected revenue is not a number pattern. Example: #,##0.0#");
+
         waitMoment();
         driver.quit();
 
@@ -509,6 +510,7 @@ public class CRM_CreateCampaign {
             Result2Excels.saveResult2ExcelFileFailed("ResultDemo","Result",
                     "TC_REQ_CM_Add_03_11","Verify that user cannot create a new Campaign when entering invalid value into Budgeted Cost field");
 
+
         }
 
         Assert.assertEquals(driver.findElement(By.xpath(CRM_CM_Page.txtBudgetedCostRedMessage)).getText(),
@@ -547,7 +549,6 @@ public class CRM_CreateCampaign {
                     "TC_REQ_CM_Add_03_12","Verify that user cannot create a new Campaign when entering invalid value into Actual Cost field");
 
         }
-
 
         Assert.assertEquals(driver.findElement(By.xpath(CRM_CM_Page.txtActualCostRedMessage)).getText(),
                 "Actual cost is not a number pattern. Example: #,##0.0#");
