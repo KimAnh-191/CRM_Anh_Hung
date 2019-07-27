@@ -57,7 +57,7 @@ public class CRM_Edit_UserProfile_TC {
 
     //Verify that 'Edit success!' message displays when user updates information successfully
     @Test(description = "Verify that 'Edit success!' message displays when user updates information successfully")
-    public void LoginTC001() throws IOException {
+    public void editUserProfileTC001() throws IOException {
         CRM_Edit_UserProfile_Actions.clearName_Company_Phone(driver);
         CRM_Edit_UserProfile_Actions.enterName_Company_Phone(driver, user1.getName(), user1.getComapny(), user1.getPhone());
         CRM_Edit_UserProfile_Actions.clickSaveinformationButton(driver);
@@ -80,7 +80,7 @@ public class CRM_Edit_UserProfile_TC {
 
     //Verify that "Please enter your name" red message displays above Name field when leaving Name field blank
     @Test(description = "Verify that 'Please enter your name' red message displays above Name field when leaving Name field blank")
-    public void LoginTC002() throws IOException {
+    public void editUserProfileTC002() throws IOException {
         driver.findElement(By.xpath(CRM_Edit_UserProfile_Pages.txtName)).clear();
         CRM_Edit_UserProfile_Actions.clickSaveinformationButton(driver);
 
@@ -101,14 +101,14 @@ public class CRM_Edit_UserProfile_TC {
 
     //Verify that "Please enter your company" red message displays above Company field when leaving Company field blank
     @Test(description = "Verify that 'Please enter your company' red message displays above Company field when leaving Company field blank")
-    public void LoginTC003() throws IOException {
+    public void editUserProfileTC003() throws IOException {
         driver.findElement(By.xpath(CRM_Edit_UserProfile_Pages.txtCompany)).clear();
         CRM_Edit_UserProfile_Actions.clickSaveinformationButton(driver);
 
         if ((driver.findElement(By.xpath(CRM_Edit_UserProfile_Pages.txtComapnyMessage)).getText()
                 .equalsIgnoreCase("Please enter your company"))) {
             Result2Excels.saveResult2ExcelFilePassed("ResultDemo", "Result",
-                    "TC_REQ_UPM_Update_04_02", "Verify that 'Verify that 'Please enter your company' red message displays above Company field when leaving Company field blank");
+                    "TC_REQ_UPM_Update_04_02", "Verify that 'Please enter your company' red message displays above Company field when leaving Company field blank");
 
         } else {
             Result2Excels.saveResult2ExcelFileFailed("ResultDemo", "Result",
@@ -122,7 +122,7 @@ public class CRM_Edit_UserProfile_TC {
 
     //Verify that "Please enter your phone" red message displays above Phone field when leaving Phone field blank
     @Test(description = "Verify that 'Please enter your phone' red message displays above Phone field when leaving Phone field blank")
-    public void LoginTC004() throws IOException {
+    public void editUserProfileTC004() throws IOException {
         driver.findElement(By.xpath(CRM_Edit_UserProfile_Pages.txtPhone)).clear();
         CRM_Edit_UserProfile_Actions.clickSaveinformationButton(driver);
 
@@ -143,7 +143,7 @@ public class CRM_Edit_UserProfile_TC {
 
     //Verify that "Only numbers 0-9" red message displays above Phone filed when user enters any letter into Phone field
     @Test(description = "Verify that 'Only numbers 0-9' red message displays above Phone filed when user enters any letter into Phone field")
-    public void LoginTC005() throws IOException {
+    public void editUserProfileTC005() throws IOException {
         driver.findElement(By.xpath(CRM_Edit_UserProfile_Pages.txtPhone)).clear();
         driver.findElement(By.xpath(CRM_Edit_UserProfile_Pages.txtPhone)).sendKeys("abcdef");
         CRM_Edit_UserProfile_Actions.clickSaveinformationButton(driver);
